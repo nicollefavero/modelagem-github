@@ -14,3 +14,5 @@ Modelar o universo de discurso do GitHub e, a partir da modelagem, implementar o
 - [ ] Falta colocar a cardinalidade em REPOSITORY -> LICENSE.
 - [ ] Ver as coisas do marketplace e colocar a parte dos APPS em ORGS.
 - [ ] Revisar os nomes dos relacionamentos e acrescentar papéis.
+- [ ] Trocar o relacionamento REPOSITORY -> CONTEM -> FILES para REPOSITORY -> COMMIT -> FILES??
+- [ ] O que é TOPICS IN REPOSITORY?
