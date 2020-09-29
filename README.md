@@ -18,6 +18,13 @@ Modelar o universo de discurso do GitHub e, a partir da modelagem, implementar o
 - [ ] Trocar o relacionamento REPOSITORY -> CONTEM -> FILES para REPOSITORY -> COMMIT -> FILES??
 - [X] O que é TOPICS IN REPOSITORY?
 
+Com base na descrição do UdD, analisar:
+- [ ] Relacionamento Possui (User/Repository): CreationDate deve migrar para Repository?
+- [ ] Relacionamento Fork: O relacionamento Contribui já não abstrai o conceito do Fork?
+- [ ] Relacionamento Follow: Ele representa uma ação realizada pelo Contributor. Auto-relacionamento.
+- [ ] Nossa intenção é representar um "print" do repositório ou alguma hierarquia, juntamente com a representação de Branch?
+- [ ] Com base do questionamento de cima, o relacionamento de Contribui e Issues são feitos no repositório e ou em arquivos do repositório?
+
 
 ### Perguntar para a professora
 - [ ] REPOSITORY -> create -> USER???
