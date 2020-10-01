@@ -57,5 +57,33 @@ create table Category
 (idRepository integer notnull,
  codTopic     integer notnull,
  primary key(idRepository, codTopic),
- foreign key(idRepository) references Repository,
+ foreign key(idRepository) references Repositories,
  foreign key(codTopic) references Topics);
+
+create table Items
+(id           integer      notnull,
+ name         varchar(100) notnull,
+ idRepository integer      notnull,
+ primary key(id),
+ foreign key(idRepository) references Repositories)
+
+-- create table Folders()
+
+create table Files
+(id          integer    notnull,
+ idItem      integer    notnull,
+ termination varchar(5) notnull,
+ primary key(id),
+ foreign key(idItem) references Items);
+
+create table Languages
+(cod integer notnull,
+ name varchar(25),
+ primary key(cod));
+
+create table Implementations
+(idFile      integer notnull,
+ codLanguage integer notnull,
+ primary key(idFile),
+ foreign key(idFile) references Files,
+ foreign key(codLanguage) references Languages);
