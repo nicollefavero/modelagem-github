@@ -24,6 +24,7 @@ Com base na descrição do UdD, analisar:
 - [ ] Relacionamento Follow: Ele representa uma ação realizada pelo Contributor. Auto-relacionamento.
 - [ ] Nossa intenção é representar um "print" do repositório ou alguma hierarquia, juntamente com a representação de Branch?
 - [ ] Com base do questionamento de cima, o relacionamento de Contribui e Issues são feitos no repositório e ou em arquivos do repositório?
+- [ ] Relacionamento 'Star' -> (0,1) ?
 
 
 ### Perguntar para a professora
