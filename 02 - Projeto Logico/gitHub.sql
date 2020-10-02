@@ -1,132 +1,152 @@
 create table Users
-(id         integer      notnull,
- name       varchar(40)  notnull,
- nickname   varchar(30)  notnull,
- biografia  varchar(160) notnull,
- email      varchar(50)  notnull,
- primary key(id)
+(id         integer      not null,
+ name       varchar(40),
+ nickname   varchar(30)  not null,
+ biografia  varchar(160),
+ email      varchar(50)  not null,
+ primary key(id),
  unique(nickname)); -- NICKNAME É UNICO??
 
+insert into Users values (1, 'Matheus Azambuja', 'matheusazambuja', 'Studying Science Computer at UFRGS', 'matheusazambuja35@gmail.com');
+insert into Users values (2, 'Karin Becker', 'karinbecker', null, 'kbecker@inf.br');
+insert into Users values (3, null, 'nicollefavero', null, 'nfavero@inf.br');
+insert into Users values (4, 'Netflix, Inc.', 'Netflix', 'Netflix Open Source Platform', 'netflixoss@netflix.com');
+insert into Users values (5, 'Google', 'google', 'Google ❤️ Open Source', 'opensource@google.com');
+insert into Users values (6, 'João da Silva', 'jsilva', null, 'jsilva35@gmail.com');
+select * from Users
+-- drop table Users
+
 create table Contributors
-(id         integer      notnull,
- idUser     integer      notnull,
+(id         integer      not null,
+ idUser     integer      not null,
  primary key(id),
- foreign key(idUser));
+ foreign key(idUser) references Users,
+ unique(idUser));
+
+insert into Contributors values (1, 1);
+insert into Contributors values (2, 1);
+insert into Contributors values (3, 2);
+insert into Contributors values (4, 2);
+insert into Contributors values (5, 2);
+insert into Contributors values (6, 2);
+select * from Contributors
+drop table Contributors
+
+
+create table Organizations
+(id         integer      not null,
+ idUser     integer      not null,
+ primary key(id),
+ foreign key(idUser) references Users);
+
+create table Members
+(idContrib  integer not null,
+ idOrg      integer not null,
+ primary key(idContrib, idOrg),
+ foreign key(idContrib) references Contributors,
+ foreign key(idOrg) references Organizations);
 
 create table Follows
-(idFollower integer      notnull,
- idFollowed integer      notnull,
- date       Date         notnull,
+(idFollower integer      not null,
+ idFollowed integer      not null,
+ date       Date         not null,
  primary key(idFollowed, idFollower),
  foreign key(idFollowed) references Contributors,
  foreign key(idFollower) references Contributors);
 
-create table Organizations
-(id         integer      notnull,
- idUser     integer      notnull,
- primary key(id),
- foreign key(idUser));
-
-create table Members
-(idContributor  integer notnull,
- idOrg          integer notnull,
- primary key(idContributor, idOrg),
- foreign key(idContributor) references Contributors,
- foreign key(idOrg) references Organizations);
-
 create table Repositories
-(idRepository integer      notnull,
- idUser       integer      notnull,
- name         varchar(60)  notnull,
- creationDate Date         notnull,
- primary key(id),
+(idRepo       integer      not null,
+ idUser       integer      not null,
+ name         varchar(60)  not null,
+ creationDate Date         not null,
+ primary key(id, idUser),
  foreign key(idUser) references Users,
- unique(idUser, name));
+ unique(name));
 
 create table Stars
-(idContrib    integer notnull,
- idRepository integer notnull,
- date         Date    notnull,
- primary key(idContrib, idRepository),
+(idContrib    integer not null,
+ idRepo       integer not null,
+ date         Date    not null,
+ primary key(idContrib, idRepo),
  foreign key(idContrib) references Contributors,
- foreign key(idRepository) references Repositories);
+ foreign key(idRepo) references Repositories);
 
 -- LICENSES É ATRIB-MULTVALOR?? OU N-M TALVEZ??
 -- create table Licenses
--- (cod          integer     notnull,
---  idRepository integer     notnull,
---  type         varchar(60) notnull,
---  primary key(cod, idRepository),
+-- (cod      integer     not null,
+--  idRepo   integer     not null,
+--  type     varchar(60) not null,
+--  primary key(cod, idRepo),
 --  foreign key(idRpository) references Repositories);
 
 create table Issues
-(number       integer       notnull,
- description  varchar(2500) notnull,
- date         Date          notnull,
- idRepository integer       notnull,
- idContrib    integer       notnull,
- primary key(number, idRepository),
- foreign key(idRepository) references Repositories,
+(number       integer       not null,
+ description  varchar(2500) not null,
+ date         Date          not null,
+ idRepo       integer       not null,
+ idContrib    integer       not null,
+ primary key(number, idRepo),
+ foreign key(idRepo) references Repositories,
  foreign key(idContrib) references Contributors);
 
 -- COMENTAR SOBRE PRECISAR DE DESCRIPTION EM COMMENT
 -- create table Comment
--- (idContrib   integer notnull,
---  numIssue    integer notnull,
---  date        Date    notnull,
+-- (idContrib   integer not null,
+--  numIssue    integer not null,
+--  date        Date    not null,
 --  description integer nontnull,
 --  primary key(idContrib, numIssue, date),
 --  foreign key(idContrib) references Contributors,
 --  foreign key(numIssue) references Issues);
 
 create table Topics
-(cod     integer     notnull,
- name    varchar(60) notnull,
+(cod     integer     not null,
+ name    varchar(60) not null,
  primary key(cod),
  unique(name));
 
 create table Category
-(idRepository integer notnull,
- codTopic     integer notnull,
- primary key(idRepository, codTopic),
- foreign key(idRepository) references Repositories,
+(idRepo     integer not null,
+ codTopic   integer not null,
+ primary key(idRepo, codTopic),
+ foreign key(idRepo) references Repositories,
  foreign key(codTopic) references Topics);
 
 create table Items
-(id           integer      notnull,
- name         varchar(100) notnull,
- idRepository integer      notnull,
+(id         integer      not null,
+ name       varchar(100) not null,
+ idRepo     integer      not null,
  primary key(id),
- foreign key(idRepository) references Repositories)
+ foreign key(idRepo) references Repositories)
 
 create table Folders
-(id         integer notnull,
- idItem     integer notnull,
+(id         integer not null,
+ idItem     integer not null,
  primary key(id),
  foreign key(idItem) references Items);
 
 create table FullWith
-(idItem integer notnull,
- idFolder integer notnull,
+(idItem   integer not null,
+ idFolder integer not null,
  primary key(idItem),
  foreign key(idItem) references Items,
  foreign key(idFolder) references Folders);
 
 create table Files
-(id          integer    notnull,
- idItem      integer    notnull,
- termination varchar(5) notnull,
+(id          integer    not null,
+ idItem      integer    not null,
+ termination varchar(5) not null,
  primary key(id),
  foreign key(idItem) references Items);
 
 create table Languages
-(cod integer notnull,
- name varchar(25),
+(cod    integer not null,
+ name   varchar(25),
  primary key(cod));
 
 create table Implementations
-(idFile      integer notnull,
- codLanguage integer notnull,
+(idFile        integer not null,
+ codLanguage   integer not null,
  primary key(idFile),
  foreign key(idFile) references Files,
  foreign key(codLanguage) references Languages);
