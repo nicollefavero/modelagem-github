@@ -5,7 +5,7 @@ create table Users
  biografia  varchar(160),
  email      varchar(50)  not null,
  primary key(id),
- unique(nickname)); -- NICKNAME É UNICO??
+ unique(nickname));
 
 insert into Users values (1, 'Matheus Azambuja', 'matheusazambuja', 'Studying Science Computer at UFRGS', 'matheusazambuja35@gmail.com');
 insert into Users values (2, 'Karin Becker', 'karinbecker', null, 'kbecker@inf.br');
@@ -13,46 +13,69 @@ insert into Users values (3, null, 'nicollefavero', null, 'nfavero@inf.br');
 insert into Users values (4, 'Netflix, Inc.', 'Netflix', 'Netflix Open Source Platform', 'netflixoss@netflix.com');
 insert into Users values (5, 'Google', 'google', 'Google ❤️ Open Source', 'opensource@google.com');
 insert into Users values (6, 'João da Silva', 'jsilva', null, 'jsilva35@gmail.com');
-select * from Users
--- drop table Users
+--   -------------  EXEMPLOS -------------- 
+-- select * from Users
+-- SELECT * FROM Users WHERE type = 'contributor' and id = 3
+drop table Users
 
 create table Contributors
-(id         integer      not null,
- idUser     integer      not null,
- primary key(id),
- foreign key(idUser) references Users,
- unique(idUser));
+(idUser integer not null,
+ primary key(idUser),
+ foreign key(idUser) references Users on delete set null);
 
-insert into Contributors values (1, 1);
-insert into Contributors values (2, 1);
-insert into Contributors values (3, 2);
-insert into Contributors values (4, 2);
-insert into Contributors values (5, 2);
-insert into Contributors values (6, 2);
+insert into Contributors values (1);
+insert into Contributors values (2);
+insert into Contributors values (3);
+insert into Contributors values (6);
 select * from Contributors
+
+-- select Users.nickmane, Contributors.idUser
+-- from Contributors
+-- left join Users
+-- on Users.id = Contributors.idUser
 drop table Contributors
 
 
 create table Organizations
-(id         integer      not null,
- idUser     integer      not null,
- primary key(id),
- foreign key(idUser) references Users);
+(idUser integer not null,
+ primary key(idUser),
+ foreign key(idUser) references Users on delete set null);
+
+insert into Organizations values (4);
+insert into Organizations values (5);
+select * from Organizations
+drop table Organizations
 
 create table Members
 (idContrib  integer not null,
  idOrg      integer not null,
  primary key(idContrib, idOrg),
- foreign key(idContrib) references Contributors,
- foreign key(idOrg) references Organizations);
+ foreign key(idContrib) references Users on delete cascade,
+ foreign key(idOrg) references Users on delete cascade);
+
+insert into Members values (1, 4);
+insert into Members values (1, 5);
+insert into Members values (2, 4);
+insert into Members values (2, 5);
+insert into Members values (3, 4);
+
+select * from Members
+drop table Members
 
 create table Follows
 (idFollower integer      not null,
  idFollowed integer      not null,
- date       Date         not null,
+ date       timestamp    not null,
  primary key(idFollowed, idFollower),
- foreign key(idFollowed) references Contributors,
- foreign key(idFollower) references Contributors);
+ foreign key(idFollowed) references Contributors on delete cascade,
+ foreign key(idFollower) references Contributors on delete cascade);
+
+insert into Follows values (1, 2, '09/12/2020 15:30:00');
+insert into Follows values (2, 3, '02/12/2020 10:30:10');
+insert into Follows values (2, 1, '09/01/2020 04:25:01');
+insert into Follows values (6, 2, '09/01/2020 11:20:09');
+select * from Follows
+drop table Follows
 
 create table Repositories
 (idRepo       integer      not null,
