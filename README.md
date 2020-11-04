@@ -9,7 +9,8 @@ Modelar o universo de discurso do GitHub e, a partir da modelagem, implementar o
 ### Roadmap
 
 #### Universo de Discurso - Nicolle
-- [ ] Acrescentar prints do GitHub
+- [ ] Acrescentar uma imagem do octocat
+- [X] Acrescentar prints do GitHub
 - [X] Dizer que email e nickname são únicos
 - [X] Especificar de que modo as informações armazenadas são usadas na timeline e na timeline de quem.
 - [X] Acrescentar print da timeline para facilitar o entendimento.
@@ -22,9 +23,10 @@ Modelar o universo de discurso do GitHub e, a partir da modelagem, implementar o
 - [ ] Qual a dúvida dela sobre o commit e a relação dos itens com o repositório.
 
 #### Github Modelagem - Matheus
-- [ ] Acrescentar o (t,e) na especificação da entidade User
-- [ ] Acrescentar atributo text no relacionamento comment.
-- [ ] Confirmar que Folder <- save (1,n) -> Item
+- [X] Acrescentar o (t,e) na especificação da entidade User
+- [X] Acrescentar atributo text no relacionamento comment.
+- [X] Confirmar que Folder <- save (1,n) -> Item
+- [X] Acrescentar o atributo descrição opcional no Repository
 
 ##### Dúvidas para perguntar para a sora
 - [ ] Perguntar o que ela quis dizer com o hashcode
@@ -33,8 +35,14 @@ Modelar o universo de discurso do GitHub e, a partir da modelagem, implementar o
 #### Regras de Mapeamento - Matheus & Nicolle
 - [ ] Revisar junto
 
-#### Implementação
+#### Dicionário de Dados
+- [X] Acrescentar os novos atributos da modelagem
 
+#### Tabelas SQL
+- [ ] Modificar as tabelas conforme as novas regras de mapeamento
+- [ ] Adicionar os novos atributos
+
+#### Implementação
 
 - [X] Modelagem Conceitual
 - [X] Projeto Lógico
