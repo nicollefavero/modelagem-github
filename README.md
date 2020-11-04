@@ -33,7 +33,11 @@ Modelar o universo de discurso do GitHub e, a partir da modelagem, implementar o
 - [ ] Perguntar sobre o relacionamento ternário Commit.
 
 #### Regras de Mapeamento - Matheus & Nicolle
-- [ ] Revisar junto
+- [X] Revisar junto
+- [ ] Ir call com a sora dia 05/11
+
+##### Dúvidas para perguntar para a sora
+- [ ] Fazer 3 tabelas (User, Contributor, Organization) X fazer apenas tabela User com atributo "type"?? Optamos pela primeira por que não sabíamos como garantir na tabela Membros que o primeiro id seria de Org e o segundo id seria de Contributor na segunda opção.
 
 #### Dicionário de Dados
 - [X] Acrescentar os novos atributos da modelagem
@@ -41,6 +45,7 @@ Modelar o universo de discurso do GitHub e, a partir da modelagem, implementar o
 #### Tabelas SQL
 - [ ] Modificar as tabelas conforme as novas regras de mapeamento
 - [ ] Adicionar os novos atributos
+
 
 #### Implementação
 
