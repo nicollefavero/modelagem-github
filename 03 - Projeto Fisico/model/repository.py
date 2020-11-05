@@ -25,8 +25,3 @@ class Repository():
     @property
     def creationDate(self):
         return self._creationDate
-
-
-if __name__ == "__main__":
-    repo = Repository(1, 4, 'ApiAlbion', '2020-01-01 00:00:00 UTC')
-    print(repo)
