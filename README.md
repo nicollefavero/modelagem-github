@@ -51,8 +51,8 @@ Modelar o universo de discurso do GitHub e, a partir da modelagem, implementar o
 - [ ] Adicionar a restrição do Hashcode
 
 #### Tabelas SQL
-- [ ] Modificar as tabelas conforme as novas regras de mapeamento
-- [ ] Adicionar os novos atributos
+- [X] Modificar as tabelas conforme as novas regras de mapeamento
+- [X] Adicionar os novos atributos
 - [ ] Organizar o arquivo sql de criação de tabelas
 - [ ] Organizar o arquivo sql de inserção de dados
 - [ ] Organizar o arquivo sql de consultas de dados (10 consultas, eu acho)
