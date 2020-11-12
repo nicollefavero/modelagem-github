@@ -105,14 +105,32 @@ insert into Follows values (6, 2, '2020-10-02 00:00:00 UTC');
 
 select * from Follows;
 
+------------ LICENSES -------------------------------------------------------------------------------
+ create table Licenses
+(cod      integer     not null,
+ type     varchar(150) not null,
+ primary key(cod));
+
+insert into Licenses values (1, 'GNU-3');
+insert into Licenses values (2, 'GNU-2');
+insert into Licenses values (3, 'MIT Licenses');
+
+-- inserindo licensa já existente
+-- insert into Licenses values (1, 'No-License');
+
+select * from Licenses;
+
 ------------ REPOSITORIES ----------------------------------------------------------------------------
 create table Repositories
 (idRepo       integer not null,
  idUser       integer not null,
  name         varchar(60) not null,
+ description  varchar(300),
  creationDate timestamp not null,
+ idLicense    integer not null,
  primary key(idRepo),
  foreign key(idUser) references Users on delete cascade,
+--  foreign key(idLicense) references Licenses,
  unique(idUser, name));
  
 insert into Repositories values (1, 1, 'computer-science-college', '2018-08-08 00:00:00 UTC');
@@ -150,21 +168,6 @@ insert into Stars values (3, 2, '2019-09-10 12:01:59 UTC');
 
 select * from Stars;
 
------------- LICENSES -------------------------------------------------------------------------------
- create table Licenses
-(cod      integer     not null,
- type     varchar(60) not null,
- primary key(cod));
-
-insert into Licenses values (1, 'GNU-3');
-insert into Licenses values (2, 'GNU-2');
-insert into Licenses values (3, 'MIT Licenses');
-
--- inserindo licensa já existente
--- insert into Licenses values (1, 'No-License');
-
-select * from Licenses;
-
 ------------ ISSUES -------------------------------------------------------------------------------
  create table Issues
 (idIssue      integer      not null,
@@ -195,7 +198,7 @@ create table Comments
 idRepo     integer not null,
 idIssue    integer not null,
 date       timestamp not null,
-description varchar(2500) not null,
+text       varchar(2500) not null,
 primary key(idContrib, idIssue, idRepo, date),
 foreign key(idContrib) references Contributors on delete set null,
 foreign key (idRepo) references Repositories on delete cascade,
@@ -319,9 +322,10 @@ select * from Saves;
 
 ------------ FILES -------------------------------------------------------------------------------
 create table Files
-(idFile      integer    not null,
- idItem      integer    not null,
- termination varchar(6) not null,
+(idFile      integer       not null,
+ idItem      integer       not null,
+--  content     varchar(3000) not null,
+ termination varchar(6)    not null,
  primary key(idItem),
  foreign key(idItem) references Items on delete cascade);
 
@@ -372,7 +376,7 @@ select * from Implementations;
 
 ------------ COMMITS -------------------------------------------------------------------------------
 create table Commits
-(hashCode   integer      not null,
+-- (hashCode   integer      not null,
  idItem     integer      not null,
  idRepo     integer      not null,
  idContrib  integer      not null,
