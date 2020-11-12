@@ -27,7 +27,7 @@ Modelar o universo de discurso do GitHub e, a partir da modelagem, implementar o
 - [X] Acrescentar atributo text no relacionamento comment.
 - [X] Confirmar que Folder <- save (1,n) -> Item
 - [X] Acrescentar o atributo descrição opcional no Repository
-- [ ] Retirar restrição do Hashcode e adicionar o Dicionário de Dados e no Universo de Discurso
+- [X] Retirar restrição do Hashcode e adicionar o Dicionário de Dados e no Universo de Discurso
 - [X] Acrescentar o atributo "name" na entidade Language
 
 ##### Dúvidas para perguntar para a sora
@@ -48,12 +48,13 @@ Modelar o universo de discurso do GitHub e, a partir da modelagem, implementar o
 
 #### Dicionário de Dados
 - [X] Acrescentar os novos atributos da modelagem
-- [ ] Adicionar a restrição do Hashcode
+- [X] Adicionar a restrição do Hashcode
 
 #### Tabelas SQL
 - [X] Modificar as tabelas conforme as novas regras de mapeamento
 - [X] Adicionar os novos atributos
-- [ ] Organizar o arquivo sql de criação de tabelas
+- [X] Organizar o arquivo sql de criação de tabelas
+- [ ] Conferir se os nomes das colunas das tabelas estão compatíveis
 - [ ] Organizar o arquivo sql de inserção de dados
 - [ ] Organizar o arquivo sql de consultas de dados (10 consultas, eu acho)
 
