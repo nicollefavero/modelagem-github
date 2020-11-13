@@ -1,12 +1,13 @@
 ------------ USUARIOS -------------------------------------------------------------------------------
 create table Users
-(id         integer      not null,
- name       varchar(60),
+(idUser     integer      not null,
+ nameUser   varchar(60),
  nickname   varchar(30)  not null,
  biografia  varchar(160),
  email      varchar(50)  not null,
- primary key(id),
- unique(nickname));
+ primary key(idUser),
+ unique(nickname),
+ unique(email));
 
 insert into Users values (1, 'Matheus Azambuja', 'matheusazambuja', 'Studying Science Computer at UFRGS', 'matheusazambuja35@gmail.com');
 insert into Users values (2, 'Karin Becker', 'karinbecker', null, 'kbecker@inf.br');
@@ -32,9 +33,9 @@ select * from Users;
 
 ------------ CONTRIBUIDORES ---------------------------------------------------------------------------
 create table Contributors
-(idUser integer not null,
- primary key(idUser),
- foreign key(idUser) references Users on delete cascade);
+(idContrib integer not null,
+ primary key(idContrib),
+ foreign key(idContrib) references Users on delete cascade);
 
 insert into Contributors values (1);
 insert into Contributors values (2);
@@ -47,13 +48,13 @@ insert into Contributors values (6);
 -- atualizando chave estrangeira
 -- update Users set id = 9 where id = 3;
 
-select * from Contributors
+select * from Contributors;
 
 ------------ ORGANIZAÇÕES -------------------------------------------------------------------------------
 create table Organizations
-(idUser integer not null,
- primary key(idUser),
- foreign key(idUser) references Users on delete cascade);
+(idOrg integer not null,
+ primary key(idOrg),
+ foreign key(idOrg) references Users on delete cascade);
 
 insert into Organizations values (4);
 insert into Organizations values (5);
@@ -88,13 +89,13 @@ select * from Members;
 
 ------------ FOLLOWS -------------------------------------------------------------------------------
 create table Follows
-(idFollower integer not null,
- idFollowed integer not null,
- date       timestamp not null,
- primary key(idFollowed, idFollower),
- foreign key(idFollowed) references Contributors on delete cascade,
- foreign key(idFollower) references Contributors on delete cascade);
- 
+(idFollower   integer   not null,
+ idFollowed   integer   not null,
+ dateFollow   timestamp not null,
+ primary key(idFollower, idFollowed),
+ foreign key(idFollower) references Contributors on delete cascade,
+ foreign key(idFollowed) references Contributors on delete cascade);
+
 insert into Follows values (1, 2, '2020-10-02 00:00:00 UTC');
 insert into Follows values (2, 3, '2020-10-02 00:00:00 UTC');
 insert into Follows values (2, 1, '2020-10-02 00:00:00 UTC');
@@ -107,9 +108,10 @@ select * from Follows;
 
 ------------ LICENSES -------------------------------------------------------------------------------
  create table Licenses
-(cod      integer     not null,
- type     varchar(150) not null,
- primary key(cod));
+(idLicense      integer     not null,
+ type           varchar(150) not null,
+ primary key(idLicense),
+ unique(type));
 
 insert into Licenses values (1, 'GNU-3');
 insert into Licenses values (2, 'GNU-2');
@@ -124,18 +126,18 @@ select * from Licenses;
 create table Repositories
 (idRepo       integer not null,
  idUser       integer not null,
- name         varchar(60) not null,
+ nameRepo     varchar(60) not null,
  description  varchar(300),
  creationDate timestamp not null,
  idLicense    integer not null,
  primary key(idRepo),
  foreign key(idUser) references Users on delete cascade,
---  foreign key(idLicense) references Licenses,
- unique(idUser, name));
+ foreign key(idLicense) references Licenses on delete set null,
+ unique(idUser, nameRepo));
  
-insert into Repositories values (1, 1, 'computer-science-college', '2018-08-08 00:00:00 UTC');
-insert into Repositories values (2, 2, 'repo-da-karin', '2020-01-01 00:00:00 UTC');
-insert into Repositories values (3, 3, 'superjava-advanced', '2019-11-04 00:00:00 UTC');
+insert into Repositories values (1, 1, 'Computer Science College', 'computer-science-college', '2018-08-08 00:00:00 UTC', 1);
+insert into Repositories values (2, 2, 'Repositório da Karin', 'repo-da-karin', '2020-01-01 00:00:00 UTC', 1);
+insert into Repositories values (3, 3, 'SuperJava Advanced', 'superjava-advanced', '2019-11-04 00:00:00 UTC', 2);
 
 -- inserindo par (idUser, name) ja cadastrado
 -- insert into Repositories values (4, 1, 'computer-science-college', '2020-08-08 00:00:00 UTC');
@@ -147,12 +149,12 @@ select * from Repositories;
 
 ------------ STARS -------------------------------------------------------------------------------
 create table Stars
-(idContrib    integer not null,
- idRepo       integer not null,
- date         timestamp    not null,
+(idContrib    integer      not null,
+ idRepo       integer      not null,
+ dateStar     timestamp    not null,
  primary key(idContrib, idRepo),
  foreign key(idContrib) references Contributors on delete cascade,
- foreign key(idRepo) references Repositories) on delete cascade;
+ foreign key(idRepo) references Repositories on delete cascade);
 
 insert into Stars values (1, 2, '2020-01-02 00:00:00 UTC');
 insert into Stars values (2, 3, '2019-09-10 12:01:59 UTC');
@@ -170,14 +172,14 @@ select * from Stars;
 
 ------------ ISSUES -------------------------------------------------------------------------------
  create table Issues
-(idIssue      integer      not null,
+(idIssue      integer       not null,
  description  varchar(2500) not null,
- date         timestamp     not null,
+ openingDate  timestamp     not null,
  idRepo       integer       not null,
  idContrib    integer       not null,
  primary key(idIssue, idRepo),
- foreign key(idRepo) references Repositories,
- foreign key(idContrib) references Contributors);
+ foreign key(idRepo) references Repositories on delete cascade,
+ foreign key(idContrib) references Contributors on delete set null);
 
 insert into Issues values (1, 'Não está funcionando', '2020-01-01 00:00:00 UTC', 1, 3);
 insert into Issues values (2, 'Sabe nada de Java', '2020-01-01 00:00:00 UTC', 3, 1);
@@ -194,21 +196,20 @@ select * from Issues;
 
 ------------ COMMENTS -------------------------------------------------------------------------------
 create table Comments
-(idContrib integer not null,
-idRepo     integer not null,
-idIssue    integer not null,
-date       timestamp not null,
-text       varchar(2500) not null,
-primary key(idContrib, idIssue, idRepo, date),
-foreign key(idContrib) references Contributors on delete set null,
-foreign key (idRepo) references Repositories on delete cascade,
-foreign key(idIssue) references Issues on delete cascade);
+(idContrib   integer       not null,
+ idIssue     integer       not null,
+ idRepo      integer       not null,
+ dateComment timestamp     not null,
+ text        varchar(2500) not null,
+ primary key(idContrib, idIssue, idRepo),
+ foreign key(idContrib) references Contributors on delete set null,
+ foreign key(idIssue, idRepo) references Issues on delete cascade);
 
-insert into Comments values (3, 3, 1, '2020-01-01 00:00:00 UTC', 'Sei sim!');
+insert into Comments values (3, 2, 3, '2020-01-01 00:00:00 UTC', 'Sei sim!');
 insert into Comments values (2, 1, 1, '2020-01-01 00:00:00 UTC', 'Muito bom! Parabééns!');
 insert into Comments values (6, 2, 2, '2020-01-01 00:00:00 UTC', 'Muito bom! Parabééns!');
 
--- (idContrib, idIssue, idRepo, date) já existe
+-- (idContrib, idIssue, idRepo) já existe
 -- insert into Comments values (6, 2, 2, '2020-01-01 00:00:00 UTC', 'Muito bom! Parabééns!');
 
 -- alterando id de um repositório
@@ -224,10 +225,10 @@ select * from Comments;
 
 ------------ TOPICS -------------------------------------------------------------------------------
 create table Topics
-(cod     integer     not null,
- name    varchar(60) not null,
- primary key(cod),
- unique(name));
+(idTopic     integer     not null,
+ nameTopic   varchar(30) not null,
+ primary key(idTopic),
+ unique(nameTopic));
 
 insert into Topics values (1, 'sgbds-fbd');
 insert into Topics values (2, 'ufrgs');
@@ -242,11 +243,11 @@ select * from Topics;
 
 ------------ CATEGORY -------------------------------------------------------------------------------
  create table Categories
-(idRepo     integer not null,
- codTopic   integer not null,
- primary key(idRepo, codTopic),
- foreign key(idRepo) references Repositories,
- foreign key(codTopic) references Topics);
+(idRepo    integer not null,
+ idTopic   integer not null,
+ primary key(idRepo, idTopic),
+ foreign key(idRepo) references Repositories on delete cascade,
+ foreign key(idTopic) references Topics on delete cascade);
 
 insert into Categories values (2, 1);
 insert into Categories values (1, 2);
@@ -264,18 +265,17 @@ select * from Categories;
 ------------ ITEMS -------------------------------------------------------------------------------
 create table Items
 (idItem     integer      not null,
- name       varchar(100) not null,
  idRepo     integer      not null,
- primary key(idItem),
+ primary key(idItem, idRepo),
  foreign key(idRepo) references Repositories on delete cascade);
 
-insert into Items values (1, 'scriptPython', 1);
-insert into Items values (2, 'aulaEspecializacao', 3);
-insert into Items values (3, 'main', 2);
-insert into Items values (4, 'botDiscord', 1);
-insert into Items values (5, 'Python', 1);
-insert into Items values (6, 'Java', 2);
-insert into Items values (7, 'Aula', 3);
+insert into Items values (1, 1);
+insert into Items values (2, 3);
+insert into Items values (3, 2);
+insert into Items values (4, 1);
+insert into Items values (5, 1);
+insert into Items values (6, 2);
+insert into Items values (7, 3);
 
 -- idItem já existe
 -- insert into Items values (7, 'FBD', 3);
@@ -285,14 +285,16 @@ select * from Items;
 ------------ FOLDERS -------------------------------------------------------------------------------
 create table Folders
 (idFolder   integer not null,
- idItem     integer not null,
+ idRepo     integer not null,
+ nameFolder varchar(100) not null,
  primary key(idFolder),
- foreign key(idItem) references Items on delete cascade);
+ foreign key(idFolder, idRepo) references Items on delete cascade,
+ unique(idRepo, nameFolder));
 
-insert into Folders values (1, 4); -- Item botDiscord
-insert into Folders values (2, 5); -- Item Python
-insert into Folders values (3, 6); -- Item Java
-insert into Folders values (4, 7); -- Item Aula
+insert into Folders values (4, 1, "botDiscord"); -- Item botDiscord
+insert into Folders values (5, 1, "Python"); -- Item Python
+insert into Folders values (6, 2, "Java"); -- Item Java
+insert into Folders values (7, 3, "Aula"); -- Item Aula
 
 -- idFolder já existe
 -- insert into Folders values (4, 3);
@@ -322,27 +324,30 @@ select * from Saves;
 
 ------------ FILES -------------------------------------------------------------------------------
 create table Files
-(idFile      integer       not null,
- idItem      integer       not null,
---  content     varchar(3000) not null,
- termination varchar(6)    not null,
- primary key(idItem),
- foreign key(idItem) references Items on delete cascade);
+(idFile      integer        not null,
+ idRepo      integer        not null,
+ content     varchar(30000) not null,
+ termination varchar(6)     not null,
+ nameFile    varchar(100)   not null,
+ primary key(idFile),
+ foreign key(idFile, idRepo) references Items on delete cascade,
+ unique(nameFile, termination, idRepo));
 
-insert into Files values (1, 1, '.py');
-insert into Files values (2, 2, '.ppt');
-insert into Files values (3, 3, '.java');
+insert into Files values (1, 1, "print('Hello World!')", ".py", "scriptPython");
+insert into Files values (2, 3, "Apresentação do Trabalho de FBD\n\nConteúdo!", ".ppt", "aulaEspecializacao");
+insert into Files values (3, 2, "System.Out.println('Hello World')!;", ".java", "main");
 
 -- idItem ja existe
--- insert into Files values (3, 3, '.java');
+-- insert into Files values (3, 3, 'System.Out.println("Hello World")!;', '.java');
 
 select * from Files;
 
 ------------ LANGUAGES -------------------------------------------------------------------------------
 create table Languages
-(codLang    integer not null,
- name       varchar(25),
- primary key(codLang));
+(idLang    integer     not null,
+ nameLang  varchar(25) not null,
+ primary key(idLang),
+ unique(nameLang));
 
 insert into Languages values (1, 'Python');
 insert into Languages values (2, 'Java');
@@ -359,11 +364,11 @@ select * from Languages;
 
 ------------ IMPLEMENTATIONS -------------------------------------------------------------------------------
 create table Implementations
-(idFile        integer not null,
- codLanguage   integer,
+(idFile   integer not null,
+ idLang   integer,
  primary key(idFile),
  foreign key(idFile) references Files on delete cascade,
- foreign key(codLanguage) references Languages on update cascade);
+ foreign key(idLang) references Languages on update cascade);
 
 insert into Implementations values (1, 1);
 insert into Implementations values (2, null);
@@ -376,17 +381,17 @@ select * from Implementations;
 
 ------------ COMMITS -------------------------------------------------------------------------------
 create table Commits
--- (hashCode   integer      not null,
+(hashCode   integer      not null,
  idItem     integer      not null,
  idRepo     integer      not null,
  idContrib  integer      not null,
- date       timestamp    not null,
+ dateCommit timestamp    not null,
  message    varchar(160) not null,
- primary key(hashCode),
- foreign key(idItem) references Items on delete cascade,
+ primary key(idItem, idRepo, idContrib, dateCommit),
+ foreign key(idItem) references Items on delete set null,
  foreign key(idRepo) references Repositories on delete cascade,
  foreign key(idContrib) references Contributors on delete set null,
- unique (idItem, idRepo, idContrib, date));
+ unique (hashCode, idRepo));
 
  insert into Commits values (1, 1, 2, 3, '2019-02-12 01:12:32 UTC', 'Mensagem 1');
  insert into Commits values (2, 1, 2, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 2');
