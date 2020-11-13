@@ -9,64 +9,17 @@ create table Users
  unique(nickname),
  unique(email));
 
-insert into Users values (1, 'Matheus Azambuja', 'matheusazambuja', 'Studying Science Computer at UFRGS', 'matheusazambuja35@gmail.com');
-insert into Users values (2, 'Karin Becker', 'karinbecker', null, 'kbecker@inf.br');
-insert into Users values (3, null, 'nicollefavero', null, 'nfavero@inf.br');
-insert into Users values (4, 'Netflix, Inc.', 'Netflix', 'Netflix Open Source Platform', 'netflixoss@netflix.com');
-insert into Users values (5, 'Google', 'google', 'Google ❤️ Open Source', 'opensource@google.com');
-insert into Users values (6, 'João da Silva', 'jsilva', null, 'jsilva35@gmail.com');
-insert into Users values (7, 'Facebook', 'facebook', 'Facebook', 'facebook@facebook.com');
-
--- inserindo elemento repetido com id repetido
--- insert into Users values (4, 'Netflix', 'Netflix', 'Netflix Open Source Platform', 'netflixoss@netflix.com');
-
--- inserindo elemento com nome repetido
--- insert into Users values (8, 'Netflix, Inc.', 'Netflix', 'Netflix Open Source Platform', 'netflixoss@netflix.com');
-
--- inserindo elemento com nickname null
--- insert into Users values (9, 'Gradle' , null, 'Dependency Manager', 'gradle@email.com');
-
--- inserindo elemento com email null
--- insert into Users values (9, 'Gradle' , 'gradle', 'Dependency Manager', null);
-
-select * from Users; 
-
 ------------ CONTRIBUIDORES ---------------------------------------------------------------------------
 create table Contributors
 (idContrib integer not null,
  primary key(idContrib),
  foreign key(idContrib) references Users on delete cascade);
 
-insert into Contributors values (1);
-insert into Contributors values (2);
-insert into Contributors values (3);
-insert into Contributors values (6);
-
--- inserindo de contributor já cadastrado
--- insert into Contributors values (1);
-
--- atualizando chave estrangeira
--- update Users set id = 9 where id = 3;
-
-select * from Contributors;
-
 ------------ ORGANIZAÇÕES -------------------------------------------------------------------------------
 create table Organizations
 (idOrg integer not null,
  primary key(idOrg),
  foreign key(idOrg) references Users on delete cascade);
-
-insert into Organizations values (4);
-insert into Organizations values (5);
-insert into Organizations values (7);
-
--- inserindo organization já cadastrado
--- insert into Organizations values (4);
-
--- atualizando chave estrangeira
--- update Users set id = 8 where id = 4;
-
-select * from Organizations;
 
 ------------ MEMBERS -------------------------------------------------------------------------------
 create table Members
@@ -75,17 +28,6 @@ create table Members
  primary key(idContrib, idOrg),
  foreign key(idContrib) references Contributors on delete cascade,
  foreign key(idOrg) references Organizations on delete cascade);
-
-insert into Members values (1, 4);
-insert into Members values (1, 5);
-insert into Members values (2, 4);
-insert into Members values (2, 5);
-insert into Members values (3, 4);
-
--- inserindo par (contrib, org) já cadastrado
--- insert into Members values (1, 4)
-
-select * from Members;
 
 ------------ FOLLOWS -------------------------------------------------------------------------------
 create table Follows
@@ -96,31 +38,12 @@ create table Follows
  foreign key(idFollower) references Contributors on delete cascade,
  foreign key(idFollowed) references Contributors on delete cascade);
 
-insert into Follows values (1, 2, '2020-10-02 00:00:00 UTC');
-insert into Follows values (2, 3, '2020-10-02 00:00:00 UTC');
-insert into Follows values (2, 1, '2020-10-02 00:00:00 UTC');
-insert into Follows values (6, 2, '2020-10-02 00:00:00 UTC');
-
--- inserindo par (follower, followed) já cadastrado
--- insert into Follows values (1, 2, '2019-10-02 09:12:10 UTC');
-
-select * from Follows;
-
 ------------ LICENSES -------------------------------------------------------------------------------
  create table Licenses
 (idLicense      integer     not null,
  type           varchar(150) not null,
  primary key(idLicense),
  unique(type));
-
-insert into Licenses values (1, 'GNU-3');
-insert into Licenses values (2, 'GNU-2');
-insert into Licenses values (3, 'MIT Licenses');
-
--- inserindo licensa já existente
--- insert into Licenses values (1, 'No-License');
-
-select * from Licenses;
 
 ------------ REPOSITORIES ----------------------------------------------------------------------------
 create table Repositories
@@ -129,23 +52,12 @@ create table Repositories
  nameRepo     varchar(60) not null,
  description  varchar(300),
  creationDate timestamp not null,
- idLicense    integer not null,
+ idLicense    integer,
  primary key(idRepo),
  foreign key(idUser) references Users on delete cascade,
  foreign key(idLicense) references Licenses on delete set null,
  unique(idUser, nameRepo));
  
-insert into Repositories values (1, 1, 'Computer Science College', 'computer-science-college', '2018-08-08 00:00:00 UTC', 1);
-insert into Repositories values (2, 2, 'Repositório da Karin', 'repo-da-karin', '2020-01-01 00:00:00 UTC', 1);
-insert into Repositories values (3, 3, 'SuperJava Advanced', 'superjava-advanced', '2019-11-04 00:00:00 UTC', 2);
-
--- inserindo par (idUser, name) ja cadastrado
--- insert into Repositories values (4, 1, 'computer-science-college', '2020-08-08 00:00:00 UTC');
-
--- alterando id do usuário (chave estrangeira)
--- update Users set id = 9 where id = 2;
-
-select * from Repositories;
 
 ------------ STARS -------------------------------------------------------------------------------
 create table Stars
@@ -155,20 +67,6 @@ create table Stars
  primary key(idContrib, idRepo),
  foreign key(idContrib) references Contributors on delete cascade,
  foreign key(idRepo) references Repositories on delete cascade);
-
-insert into Stars values (1, 2, '2020-01-02 00:00:00 UTC');
-insert into Stars values (2, 3, '2019-09-10 12:01:59 UTC');
-insert into Stars values (1, 3, '2019-09-10 12:01:59 UTC');
-insert into Stars values (3, 2, '2019-09-10 12:01:59 UTC');
-
--- inserindo par (idContrib, idRepo) já existe
--- insert into Stars values (1, 3, '2020-05-10 12:01:59 UTC');
-
--- alterando id de um repositório
--- update Repositories set idRepo = 4 where idRepo = 3;
-
-
-select * from Stars;
 
 ------------ ISSUES -------------------------------------------------------------------------------
  create table Issues
@@ -181,19 +79,6 @@ select * from Stars;
  foreign key(idRepo) references Repositories on delete cascade,
  foreign key(idContrib) references Contributors on delete set null);
 
-insert into Issues values (1, 'Não está funcionando', '2020-01-01 00:00:00 UTC', 1, 3);
-insert into Issues values (2, 'Sabe nada de Java', '2020-01-01 00:00:00 UTC', 3, 1);
-insert into Issues values (2, 'Sabe nada de Java', '2020-01-01 00:00:00 UTC', 2, 1);
-insert into Issues values (3, 'Arquivo aulaEspecializacao não está abrindo', '2020-01-01 00:00:00 UTC', 3, 1);
-
--- inserindo par (idIssue, idRepo) ja existe
--- insert into Issues values (3, 'Arquivo aulaEspecializacao não está abrindo', '2020-01-01 00:00:00 UTC', 3, 3);
-
--- alterando id de um repositório
--- update Repositories set idRepo = 4 where idRepo = 3;
-
-select * from Issues;
-
 ------------ COMMENTS -------------------------------------------------------------------------------
 create table Comments
 (idContrib   integer       not null,
@@ -201,27 +86,9 @@ create table Comments
  idRepo      integer       not null,
  dateComment timestamp     not null,
  text        varchar(2500) not null,
- primary key(idContrib, idIssue, idRepo),
+ primary key(idContrib, idIssue, idRepo, dateComment),
  foreign key(idContrib) references Contributors on delete set null,
  foreign key(idIssue, idRepo) references Issues on delete cascade);
-
-insert into Comments values (3, 2, 3, '2020-01-01 00:00:00 UTC', 'Sei sim!');
-insert into Comments values (2, 1, 1, '2020-01-01 00:00:00 UTC', 'Muito bom! Parabééns!');
-insert into Comments values (6, 2, 2, '2020-01-01 00:00:00 UTC', 'Muito bom! Parabééns!');
-
--- (idContrib, idIssue, idRepo) já existe
--- insert into Comments values (6, 2, 2, '2020-01-01 00:00:00 UTC', 'Muito bom! Parabééns!');
-
--- alterando id de um repositório
--- update Repositories set idRepo = 4 where idRepo = 3;
-
--- alterando id de um Issue
--- update Issues set idIssue = 4 where idIssue = 1;
-
--- deletando um contribuidor
--- delete * from Contributor where id = 2;
-
-select * from Comments;
 
 ------------ TOPICS -------------------------------------------------------------------------------
 create table Topics
@@ -248,19 +115,6 @@ select * from Topics;
  primary key(idRepo, idTopic),
  foreign key(idRepo) references Repositories on delete cascade,
  foreign key(idTopic) references Topics on delete cascade);
-
-insert into Categories values (2, 1);
-insert into Categories values (1, 2);
-insert into Categories values (3, 5);
-
--- inserindo par (idRepo, codTopic) ja existe
--- insert into Categories values (3, 5);
-
--- alterando id de um repositório
--- update Repositories set idRepo = 4 where idRepo = 3;
-
-
-select * from Categories;
 
 ------------ ITEMS -------------------------------------------------------------------------------
 create table Items
@@ -305,7 +159,8 @@ select * from Folders;
 create table Saves
 (idItem   integer not null,
  idFolder integer,
- primary key(idItem),
+ idRepo   interger not null,
+ primary key(idItem, idRepo),
  foreign key(idItem) references Items on delete cascade,
  foreign key(idFolder) references Folders on delete cascade);
 
