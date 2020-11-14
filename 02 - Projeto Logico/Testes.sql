@@ -48,18 +48,18 @@ create table Repositories
  foreign key(idLicense) references Licenses on delete set null,
  unique(idUser, nameRepo));
  
-insert into Repositories values (1, 1, 'Computer Science College', 'computer-science-college', '2018-08-08 00:00:00 UTC', 1);
-insert into Repositories values (2, 2, 'Fundamentos de Banco de Dados', 'rep-fbd', '2020-01-01 00:00:00 UTC', 1);
-insert into Repositories values (3, 3, 'Java Studies', 'superjava', '2019-11-04 00:00:00 UTC', null);
-insert into Repositories values (4, 1, 'Info Animes', 'info-animes', '2018-12-01 00:00:00 UTC', 6);
-insert into Repositories values (5, 9, 'Project PET', 'proj-pet', '2020-11-13 09:00:00 UTC', 9);
-insert into Repositories values (6, 7, 'Project Golang', 'proj-go', '2020-11-21 12:10:00 UTC', 7);
-insert into Repositories values (7, 5, 'Project Google', 'proj-google', '2019-11-21 12:10:00 UTC', 5);
-insert into Repositories values (8, 8, 'Project Docker', 'proj-docker', '2009-10-21 12:10:00 UTC', 9);
+-- insert into Repositories values (1, 1, 'Computer Science College', 'computer-science-college', '2018-08-08 00:00:00 UTC', 1);
+-- insert into Repositories values (2, 2, 'Fundamentos de Banco de Dados', 'rep-fbd', '2020-01-01 00:00:00 UTC', 1);
+-- insert into Repositories values (3, 3, 'Java Studies', 'superjava', '2019-11-04 00:00:00 UTC', null);
+-- insert into Repositories values (4, 1, 'Info Animes', 'info-animes', '2018-12-01 00:00:00 UTC', 6);
+-- insert into Repositories values (5, 9, 'Project PET', 'proj-pet', '2020-11-13 09:00:00 UTC', 9);
+-- insert into Repositories values (6, 7, 'Project Golang', 'proj-go', '2020-11-21 12:10:00 UTC', 7);
+-- insert into Repositories values (7, 5, 'Project Google', 'proj-google', '2019-11-21 12:10:00 UTC', 5);
+-- insert into Repositories values (8, 8, 'Project Docker', 'proj-docker', '2009-10-21 12:10:00 UTC', 9);
 insert into Repositories values (9, 3, 'Trilha Estagio', 'trilha-estagio', '2009-10-21 12:10:00 UTC', 6);
-insert into Repositories values (10, 3, 'Modelagem Github', 'modelagem-github', '2009-10-21 12:10:00 UTC', 6);
-insert into Repositories values (11, 1, 'Courses', 'courses', '2019-10-21 12:10:00 UTC', null);
-insert into Repositories values (12, 8, 'Docker Compose', 'docker-compose', '2014-10-21 12:10:00 UTC', null);
+-- insert into Repositories values (10, 3, 'Modelagem Github', 'modelagem-github', '2009-10-21 12:10:00 UTC', 6);
+-- insert into Repositories values (11, 1, 'Courses', 'courses', '2019-10-21 12:10:00 UTC', null);
+-- insert into Repositories values (12, 8, 'Docker Compose', 'docker-compose', '2014-10-21 12:10:00 UTC', null);
 
 
 create table Items
@@ -108,6 +108,80 @@ from Files
 select *
 from Saves
 
+insert into Contributors values (1);
+insert into Contributors values (2);
+insert into Contributors values (3);
+insert into Contributors values (6);
+insert into Contributors values (9);
 
 
- 
+-- Repositório Java Studies
+insert into Items values (1, 3);
+insert into Items values (2, 3);
+insert into Items values (5, 3);
+insert into Items values (6, 3);
+
+-- Repositório Computer Science College
+insert into Items values (3, 1);
+insert into Items values (4, 1);
+insert into Items values (7, 1);
+insert into Items values (8, 1);
+insert into Items values (9, 1);
+insert into Items values (10, 1);
+
+-- Repositório Info Animes
+insert into Items values (11, 4);
+insert into Items values (12, 4);
+insert into Items values (13, 4);
+
+-- Repo Fundamentos de Banco de Dados
+insert into Items values (14, 2);
+insert into Items values (15, 2);
+insert into Items values (16, 2);
+
+-- Repositório Project PET
+insert into Items values (17, 5);
+insert into Items values (18, 5);
+insert into Items values (19, 5);
+
+-- Repositório Project Golang
+insert into Items values (20, 6);
+insert into Items values (21, 6);
+insert into Items values (22, 6);
+
+-- Repositório Project Google
+insert into Items values (23, 7);
+insert into Items values (24, 7);
+insert into Items values (25, 7);
+insert into Items values (26, 7);
+
+-- Repositório Project Docker
+insert into Items values (27, 8);
+insert into Items values (28, 8);
+
+-- Repositório Trilha Estágio
+insert into Items values (41, 9);
+insert into Items values (42, 9);
+insert into Items values (43, 9);
+insert into Items values (44, 9);
+insert into Items values (45, 9);
+insert into Items values (46, 9);
+
+-- Repositório Modelagem Github
+insert into Items values (29, 10);
+insert into Items values (30, 10);
+insert into Items values (31, 10);
+insert into Items values (32, 10);
+insert into Items values (33, 10);
+
+-- Repositório Courses
+insert into Items values (34, 11);
+insert into Items values (35, 11);
+insert into Items values (36, 11);
+insert into Items values (37, 11);
+insert into Items values (38, 11);
+
+-- Repositório Docker Compose
+insert into Items values (39, 12);
+insert into Items values (40, 12);
+
