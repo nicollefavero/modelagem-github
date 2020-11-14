@@ -65,52 +65,44 @@ insert into Repositories values (12, 8, 'Docker Compose', 'docker-compose', '201
 create table Items
 (idItem     integer not null,
  idRepo     integer not null,
- primary key(idItem, idRepo),
+ primary key(idItem),
  foreign key(idRepo) references Repositories on delete cascade);
 
-
--- Aqui teremos que mudar a modelagem, se quisermos deixar assim
--- Ou deixamos como em Files
 create table Folders
 (idFolder   integer not null,
- idRepo     integer not null,
- nameFolder varchar(100) not null,
- primary key(idFolder, idRepo),
- foreign key(idFolder, idRepo) references Items on delete cascade,
- unique(idRepo, nameFolder));
- 
- 
- -- File único dentro do Repo? Se sim, mudamos a modelagem tbm
- -- Se não, cada arquivo com ID diferente em TODOS os repos (PK = idFile) somente
+ nameFolder integer not null,
+ primary key (idFolder),
+ foreign key (idFolder) references Items on delete cascade);
+
  create table Files
-(idFile      integer not null,
- idRepo      integer not null,
- content     varchar(30000) not null,
+(idFile     integer not null,
+ nameFile   varchar(100) not null,
+ content varchar(8000) not null,
  termination varchar(6) not null,
- nameFile    varchar(100) not null,
- primary key(idFile),
- foreign key(idFile, idRepo) references Items on delete cascade,
- unique(nameFile, termination, idRepo));
- 
- 
+ primary key (idFile),
+ foreign key (idFile) references Items on delete cascade);
+
+
  create table Saves
 (idItem   integer not null,
  idFolder integer,
- idRepo   integer not null,
- primary key(idItem, idRepo),
- foreign key(idItem, idRepo) references Items on delete cascade,
- foreign key(idFolder, idRepo) references Folders on delete cascade);
+ primary key(idItem),
+ foreign key(idItem) references Items on delete cascade,
+ foreign key(idFolder) references Folders on delete cascade);
  
  
- 
+
 insert into Items values (1, 1);
 insert into Items values (2, 1);
 insert into Items values (3, 1);
 insert into Items values (4, 1);
 insert into Items values (5, 1);
 insert into Items values (6, 1);
+
 insert into Folders values (1, 1, 'botDiscord'); -- Item botDiscord
 insert into Folders values (2, 1, 'Python'); -- Item botDiscord
+
+
 insert into Files values (3, 1, 'print("Hello World!")', '.py', 'helloWorldPython');
 insert into Files values (4, 1, 'import discord.api as ds\nprint("ds.foo()")', '.py', 'main');
 insert into Files values (5, 1, 'import numpy as np\nprint(np.foo())', '.py', 'exampleNumpy');

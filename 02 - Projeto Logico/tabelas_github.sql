@@ -118,9 +118,9 @@ select * from Topics;
 
 ------------ ITEMS -------------------------------------------------------------------------------
 create table Items
-(idItem     integer      not null,
- idRepo     integer      not null,
- primary key(idItem, idRepo),
+(idItem     integer not null,
+ idRepo     integer not null,
+ primary key(idItem),
  foreign key(idRepo) references Repositories on delete cascade);
 
 insert into Items values (1, 1);
@@ -139,11 +139,9 @@ select * from Items;
 ------------ FOLDERS -------------------------------------------------------------------------------
 create table Folders
 (idFolder   integer not null,
- idRepo     integer not null,
- nameFolder varchar(100) not null,
- primary key(idFolder),
- foreign key(idFolder, idRepo) references Items on delete cascade,
- unique(idRepo, nameFolder));
+ nameFolder integer not null,
+ primary key (idFolder),
+ foreign key (idFolder) references Items on delete cascade);
 
 insert into Folders values (4, 1, "botDiscord"); -- Item botDiscord
 insert into Folders values (5, 1, "Python"); -- Item Python
@@ -159,8 +157,7 @@ select * from Folders;
 create table Saves
 (idItem   integer not null,
  idFolder integer,
- idRepo   interger not null,
- primary key(idItem, idRepo),
+ primary key(idItem),
  foreign key(idItem) references Items on delete cascade,
  foreign key(idFolder) references Folders on delete cascade);
 
@@ -179,14 +176,12 @@ select * from Saves;
 
 ------------ FILES -------------------------------------------------------------------------------
 create table Files
-(idFile      integer        not null,
- idRepo      integer        not null,
- content     varchar(30000) not null,
- termination varchar(6)     not null,
- nameFile    varchar(100)   not null,
- primary key(idFile),
- foreign key(idFile, idRepo) references Items on delete cascade,
- unique(nameFile, termination, idRepo));
+(idFile     integer not null,
+ nameFile   varchar(100) not null,
+ content varchar(8000) not null,
+ termination varchar(6) not null,
+ primary key (idFile),
+ foreign key (idFile) references Items on delete cascade);
 
 insert into Files values (1, 1, "print('Hello World!')", ".py", "scriptPython");
 insert into Files values (2, 3, "Apresentação do Trabalho de FBD\n\nConteúdo!", ".ppt", "aulaEspecializacao");
