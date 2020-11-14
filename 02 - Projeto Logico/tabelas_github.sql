@@ -97,17 +97,6 @@ create table Topics
  primary key(idTopic),
  unique(nameTopic));
 
-insert into Topics values (1, 'sgbds-fbd');
-insert into Topics values (2, 'ufrgs');
-insert into Topics values (3, 'python');
-insert into Topics values (4, 'java');
-insert into Topics values (5, 'fbd');
-
--- inserindo id ja existente
--- insert into Topics values (4, 'c-like');
-
-select * from Topics;
-
 ------------ CATEGORY -------------------------------------------------------------------------------
  create table Categories
 (idRepo    integer not null,
@@ -123,35 +112,12 @@ create table Items
  primary key(idItem),
  foreign key(idRepo) references Repositories on delete cascade);
 
-insert into Items values (1, 1);
-insert into Items values (2, 3);
-insert into Items values (3, 2);
-insert into Items values (4, 1);
-insert into Items values (5, 1);
-insert into Items values (6, 2);
-insert into Items values (7, 3);
-
--- idItem já existe
--- insert into Items values (7, 'FBD', 3);
-
-select * from Items;
-
 ------------ FOLDERS -------------------------------------------------------------------------------
 create table Folders
 (idFolder   integer not null,
- nameFolder integer not null,
+ nameFolder varchar(100) not null,
  primary key (idFolder),
  foreign key (idFolder) references Items on delete cascade);
-
-insert into Folders values (4, 1, "botDiscord"); -- Item botDiscord
-insert into Folders values (5, 1, "Python"); -- Item Python
-insert into Folders values (6, 2, "Java"); -- Item Java
-insert into Folders values (7, 3, "Aula"); -- Item Aula
-
--- idFolder já existe
--- insert into Folders values (4, 3);
-
-select * from Folders;
 
 ------------ SAVES -------------------------------------------------------------------------------
 create table Saves
@@ -161,36 +127,14 @@ create table Saves
  foreign key(idItem) references Items on delete cascade,
  foreign key(idFolder) references Folders on delete cascade);
 
-insert into Saves values (1, 2); -- Item scriptPython em Python
-insert into Saves values (2, 4); -- Item aulaEspecilizacao em Aula
-insert into Saves values (3, 3); -- Item main em Java
-insert into Saves values (4, null); -- Item botDiscord nao associado a nenhuma pasta
-insert into Saves values (5, null); -- Item Python nao associado a nenhuma pasta
-insert into Saves values (6, null); -- Item Java nao associado a nenhuma pasta
-insert into Saves values (7, null); -- Item Aula nao associado a nenhuma pasta
-
--- idItem ja existe
--- insert into Saves values (7, null);
-
-select * from Saves;
-
 ------------ FILES -------------------------------------------------------------------------------
 create table Files
-(idFile     integer not null,
- nameFile   varchar(100) not null,
- content varchar(8000) not null,
+(idFile      integer not null,
+ nameFile    varchar(100) not null,
+ content     varchar(8000) not null,
  termination varchar(6) not null,
  primary key (idFile),
  foreign key (idFile) references Items on delete cascade);
-
-insert into Files values (1, 1, "print('Hello World!')", ".py", "scriptPython");
-insert into Files values (2, 3, "Apresentação do Trabalho de FBD\n\nConteúdo!", ".ppt", "aulaEspecializacao");
-insert into Files values (3, 2, "System.Out.println('Hello World')!;", ".java", "main");
-
--- idItem ja existe
--- insert into Files values (3, 3, 'System.Out.println("Hello World")!;', '.java');
-
-select * from Files;
 
 ------------ LANGUAGES -------------------------------------------------------------------------------
 create table Languages
@@ -199,19 +143,6 @@ create table Languages
  primary key(idLang),
  unique(nameLang));
 
-insert into Languages values (1, 'Python');
-insert into Languages values (2, 'Java');
-insert into Languages values (3, 'C');
-insert into Languages values (4, 'C+');
-insert into Languages values (5, 'JavaScript');
-insert into Languages values (6, 'Assembly');
-insert into Languages values (7, 'SQL');
-
--- codLang ja existe
--- insert into Languages values (7, 'SQL');
-
-select * from Languages;
-
 ------------ IMPLEMENTATIONS -------------------------------------------------------------------------------
 create table Implementations
 (idFile   integer not null,
@@ -219,15 +150,6 @@ create table Implementations
  primary key(idFile),
  foreign key(idFile) references Files on delete cascade,
  foreign key(idLang) references Languages on update cascade);
-
-insert into Implementations values (1, 1);
-insert into Implementations values (2, null);
-insert into Implementations values (3, 2);
-
--- idFile ja existe
--- insert into Implementations values (1, null);
-
-select * from Implementations;
 
 ------------ COMMITS -------------------------------------------------------------------------------
 create table Commits
@@ -242,16 +164,3 @@ create table Commits
  foreign key(idRepo) references Repositories on delete cascade,
  foreign key(idContrib) references Contributors on delete set null,
  unique (hashCode, idRepo));
-
- insert into Commits values (1, 1, 2, 3, '2019-02-12 01:12:32 UTC', 'Mensagem 1');
- insert into Commits values (2, 1, 2, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 2');
- insert into Commits values (3, 3, 2, 1, '2019-02-12 01:12:32 UTC', 'Mensagem 3');
- insert into Commits values (4, 1, 3, 1, '2020-10-15 10:32:19 UTC', 'Mensagem 4');
-
- -- hashCode ja existe
- -- insert into Commits values (1, 2, 2, 1, '2020-12-12 01:12:32 UTC', 'Mensagem 10');
-
- -- (idItem, idRepo, idContrib, date) ja existe
- -- insert into Commits values (5, 1, 3, 1, '2020-10-15 10:32:19 UTC', 'Mensagem 9999');
-
-select * from Commits;
