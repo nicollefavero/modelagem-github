@@ -7,7 +7,7 @@ insert into Users values (4, 'Netflix, Inc.', 'Netflix', 'Netflix Open Source Pl
 insert into Users values (5, 'Google', 'google', 'Google ❤️ Open Source', 'opensource@google.com');
 insert into Users values (6, 'João da Silva', 'jsilva', null, 'jsilva35@gmail.com');
 insert into Users values (7, 'Golang', 'golang', 'Go is a programming language built to resemble a simplified version of the C programming language.', 'golang@golang.google.com');
-insert into Users values (8, 'Docker', 'docker', 'Docker is a platform built for developers to build and run applications.', 'docker@docker.docker.br')
+insert into Users values (8, 'Docker', 'docker', 'Docker is a platform built for developers to build and run applications.', 'docker@docker.docker.br');
 insert into Users values (9, 'Victoria Duarte', 'vic_ic', 'Estudante de Ciencia da Computacao na UFRGS', 'vicvic@inf.ufrgs.com');
 insert into Users values (10, 'PET COMPUTACAO UFRGS', 'PET_COMPUTACAO', 'PET do Instituto de Informática', 'petcomp@inf.ufrgs.br');
 
@@ -217,9 +217,9 @@ insert into Topics values (2, 'ufrgs');
 insert into Topics values (3, 'python');
 insert into Topics values (4, 'java');
 insert into Topics values (5, 'fbd');
-insert into Topics values (6, 'bot-python')
-insert into Topics values (7, 'modelagem')
-insert into Topics values (8, 'data-science')
+insert into Topics values (6, 'bot-python');
+insert into Topics values (7, 'modelagem');
+insert into Topics values (8, 'data-science');
 insert into Topics values (9, 'java-script');
 insert into Topics values (10, 'anime');
 insert into Topics values (11, 'docker');
@@ -262,29 +262,132 @@ insert into Items values (1, 3);
 insert into Items values (2, 3);
 insert into Items values (3, 3);
 insert into Items values (4, 3);
+-- select * from Items;
+
+-- idItem já existe
+-- insert into Items values (4, 3);
+
+---- Alteração: Matheus
+insert into Items values (1, 3);
+insert into Items values (2, 3);
+insert into Items values (3, 1);
+insert into Items values (4, 1);
+insert into Items values (5, 3);
+insert into Items values (6, 3);
+insert into Items values (7, 1);
+insert into Items values (8, 1);
+insert into Items values (9, 1);
+insert into Items values (10, 1);
+
+insert into Items values (11, 4);
+insert into Items values (12, 4);
+insert into Items values (13, 4);
+
 
 -- INSERINDO PASTAS
--- insert into Folders values (idFolder, idRepo, nameFolder);
-insert into Folders values (1, 3, 'poc');
-insert into Folders values (3, 3, 'main');
+-- insert into Folders values (idFolder, idRepo);
+insert into Folders values (1, 'poc');
+insert into Folders values (2, 'main');
+-- select * from Folders;
 
--- INSERINDO SAVES
--- insert into Saves values (idItem, idFolder, idRepo);
-insert into Saves values (3, 1, 3);
-insert into Saves values ()
+-- idFolder já existe
+-- insert into Folders values (2, 'botDiscord');
+
+---- Alteração: Matheus
+insert into Folders values (3, 'botDiscord'); -- Item botDiscord
+insert into Folders values (4, 'Python'); -- Item Python
+insert into Folders values (11, 'src');
+
 
 -- INSERINDO FILES
--- insert into Files values (idFile, idRepo, content, termination, nameFile);
-insert into Files values (2, 3, '@SpringBootApplication\nMain {\nprivate static void main (String[] args) {\nSpringApplication.run(Main.class)}}', '.java', 'Main');
-insert into Files values (4, 3, '#!/bin/bash\ncd ..&&gradle bootRun', '.sh', 'Main');
+-- insert into Files values (idFile, nameFile, content, termination);
+insert into Files values (5, 'Main', '@SpringBootApplication\nMain {\nprivate static void main (String[] args) {\nSpringApplication.run(Main.class)}}', '.java');
+insert into Files values (6, 'Main', '#!/bin/bash\ncd ..&&gradle bootRun', '.sh');
+
+---- Alteração: Matheus
+insert into Files values (7, 'helloWorldPython', 'print("Hello World!")', '.py');
+insert into Files values (8, 'main', 'import discord.api as ds\nprint("ds.foo()")', '.py');
+insert into Files values (9, 'exampleNumpy', 'import numpy as np\nprint(np.foo())', '.py');
+insert into Files values (10, 'commands-bot', '1001110101011111001011', '.png');
+insert into Files values (12, 'exampleMath', 'import Math\nprint(Math.foo())', '.py');
+insert into Files values (13, 'exampleInfoAnime', 'print("Anime Info")', '.py');
+
+-- select * from Files;
+
+-- idItem ja existe
+-- insert into Files values (3, 'Main', 'System.Out.println("Hello World")!;', '.java');
+
+
+-- INSERINDO SAVES
+-- insert into Saves values (idItem, idFolder);
+insert into Saves values (5, 2);
+insert into Saves values (6, 1);
+
+---- Alteração: Matheus
+insert into Saves values (1, null);
+insert into Saves values (2, null);
+insert into Saves values (3, null);
+insert into Saves values (4, null);
+insert into Saves values (7, 4);
+insert into Saves values (8, 3);
+insert into Saves values (9, 4);
+insert into Saves values (10, 3);
+insert into Saves values (11, null);
+insert into Saves values (12, 11);
+insert into Saves values (13, 11);
+
+
+-- select * from Saves;
+
+-- idItem ja existe
+-- insert into Saves values (7, null);
+
 
 -- INSERINDO LANGUAGES
 -- insert into Languages values (idLang, nameLang);
+insert into Languages values (1, 'Python');
+insert into Languages values (2, 'Java');
+insert into Languages values (3, 'C');
+insert into Languages values (4, 'C+');
+insert into Languages values (5, 'JavaScript');
+insert into Languages values (6, 'Assembly');
+insert into Languages values (7, 'SQL');
+insert into Languages values (8, 'Ruby');
+insert into Languages values (9, 'HTML');
+insert into Languages values (10, 'COBOL');
+insert into Languages values (11, 'BASIC');
+insert into Languages values (12, 'R');
+insert into Languages values (13, 'Go');
+-- select * from Languages;
+
+-- codLang ja existe
+-- insert into Languages values (7, 'SQL');
 
 
 -- INSERINDO IMPLEMENTACOES
 -- insert into Implementations values (idFile, idLang);
+-- insert into Implementations values (1, 1);
+-- insert into Implementations values (2, null);
+-- insert into Implementations values (3, 2);
+
+-- select * from Implementations;
+
+-- idFile ja existe
+-- insert into Implementations values (1, null);
 
 
 -- INSERINDO COMMITS
 -- insert into Commits values (hashcode, idItem, idRepo, idContrib, dateCommit, message);
+--  insert into Commits values (1, 1, 2, 3, '2019-02-12 01:12:32 UTC', 'Mensagem 1');
+--  insert into Commits values (2, 1, 2, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 2');
+--  insert into Commits values (3, 3, 2, 1, '2019-02-12 01:12:32 UTC', 'Mensagem 3');
+--  insert into Commits values (4, 1, 3, 1, '2020-10-15 10:32:19 UTC', 'Mensagem 4');
+
+-- select * from Commits;
+
+-- hashCode ja existe
+-- insert into Commits values (1, 2, 2, 1, '2020-12-12 01:12:32 UTC', 'Mensagem 10');
+
+-- (idItem, idRepo, idContrib, date) ja existe
+-- insert into Commits values (5, 1, 3, 1, '2020-10-15 10:32:19 UTC', 'Mensagem 9999');
+
