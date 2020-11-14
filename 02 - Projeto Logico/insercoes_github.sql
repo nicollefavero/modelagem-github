@@ -258,31 +258,87 @@ insert into Categories values (9, 11);
 
 -- INSERINDO ITENS
 -- insert into Items values (idItem, idRepo);
-insert into Items values (1, 3);
-insert into Items values (2, 3);
-insert into Items values (3, 3);
-insert into Items values (4, 3);
+--insert into Items values (1, 3);
+--insert into Items values (2, 3);
+--insert into Items values (3, 3);
+--insert into Items values (4, 3);
 -- select * from Items;
 
 -- idItem já existe
 -- insert into Items values (4, 3);
 
 ---- Alteração: Matheus
+-- Repositório Java Studies
 insert into Items values (1, 3);
 insert into Items values (2, 3);
-insert into Items values (3, 1);
-insert into Items values (4, 1);
 insert into Items values (5, 3);
 insert into Items values (6, 3);
+
+-- Repositório Computer Science College
+insert into Items values (3, 1);
+insert into Items values (4, 1);
 insert into Items values (7, 1);
 insert into Items values (8, 1);
 insert into Items values (9, 1);
 insert into Items values (10, 1);
 
+-- Repositório Info Animes
 insert into Items values (11, 4);
 insert into Items values (12, 4);
 insert into Items values (13, 4);
 
+-- Repo Fundamentos de Banco de Dados
+insert into Items values (14, 2);
+insert into Items values (15, 2);
+insert into Items values (16, 2);
+
+-- Repositório Project PET
+insert into Items values (17, 5);
+insert into Items values (18, 5);
+insert into Items values (19, 5);
+
+-- Repositório Project Golang
+insert into Items values (20, 6);
+insert into Items values (21, 6);
+insert into Items values (22, 6);
+
+-- Repositório Project Google
+insert into Items values (23, 7);
+insert into Items values (24, 7);
+insert into Items values (25, 7);
+insert into Items values (26, 7);
+
+-- Repositório Project Docker
+insert into Items values (27, 8);
+insert into Items values (28, 8);
+
+-- Repositório Trilha Estágio
+
+-- Repositório Modelagem Github
+insert into Items values (29, 10);
+insert into Items values (30, 10);
+insert into Items values (31, 10);
+insert into Items values (32, 10);
+insert into Items values (33, 10);
+
+-- Repositório Courses
+insert into Items values (34, 11);
+insert into Items values (35, 11);
+insert into Items values (36, 11);
+insert into Items values (37, 11);
+insert into Items values (38, 11);
+
+-- Repositório Docker Compose
+insert into Items values (39, 12);
+insert into Items values (40, 12);
+
+-- Repositório Trilha Estagio
+insert into Items values (41, 9);
+insert into Items values (42, 9);
+insert into Items values (43, 9);
+insert into Items values (44, 9);
+insert into Items values (45, 9);
+insert into Items values (46, 9);
 
 -- INSERINDO PASTAS
 -- insert into Folders values (idFolder, idRepo);
@@ -297,6 +353,12 @@ insert into Folders values (2, 'main');
 insert into Folders values (3, 'botDiscord'); -- Item botDiscord
 insert into Folders values (4, 'Python'); -- Item Python
 insert into Folders values (11, 'src');
+insert into Folders values (17, 'PETFolder');
+insert into Folders values (23, 'GoogleFolder');
+insert into Folders values (29, 'Etapa 01');
+insert into Folders values (41, 'primeiraTarefa')
+
+
 
 
 -- INSERINDO FILES
@@ -311,6 +373,44 @@ insert into Files values (9, 'exampleNumpy', 'import numpy as np\nprint(np.foo()
 insert into Files values (10, 'commands-bot', '1001110101011111001011', '.png');
 insert into Files values (12, 'exampleMath', 'import Math\nprint(Math.foo())', '.py');
 insert into Files values (13, 'exampleInfoAnime', 'print("Anime Info")', '.py');
+
+insert into Files values (14, 'select_clientes', 'select * from clientes', '.sql');
+insert into Files values (15, 'apresentacao_fbd', 'apresentacao FBD sobre seleção', '.ppt');
+insert into Files values (16, 'inserção_FBD', 'insert into clientes values (1, "matheus")', '.sql');
+
+insert into Files values (18, 'data-science', 'import data-science\nprint(data-science.foo())"', '.r');
+insert into Files values (19, 'data_base_example', 'matheus jorge, 32, 129827192891\ncarlos thiago, 73, 1928367312', '.txt');
+
+insert into Files values (20, 'go_hello_world', 'golang_implementacao()', '.go');
+insert into Files values (21, 'go_threads', 'go_implentacao_threads()', '.go');
+insert into Files values (22, 'example_go', 'go.implementation()', '.go');
+
+insert into Files values (24, 'example_google', 'go.implementation()', '.go');
+insert into Files values (25, 'select_clientes', 'select * from clientes', '.sql');
+insert into Files values (26, 'helloWorld_C', 'int main {\nprint("Hello World!");\nreturn 0;', '.c');
+
+insert into Files values (27, 'requirements', 'flask 1.9.2\ndjango 3.2.2\ndata-science 29.1.6', '.txt');
+insert into Files values (28, 'helloWorld_C++', 'int main {\nprint("Hello World!");\nreturn 0;', '.c++');
+
+insert into Files values (30, 'modelagem_github', '1010101011110000101011', '.brm');
+insert into Files values (31, 'descricaoUdD', 'Desctição do Unvierso Github', '.pdf');
+insert into Files values (32, 'DicionarioDados', 'dicionario de Dados do Github', '.pdf');
+insert into Files values (33, 'gitHubModelagem', '1010100001111010101110011', '.png');
+
+insert into Files values (34, 'rubyHelloWord', 'print("hello world in ruby")', '.rb');
+insert into Files values (35, 'jsHelloWorld', 'print("hello world in JS")', '.js');
+insert into Files values (36, 'assembly_foo', 'implementacao in assembly', '.asb');
+insert into Files values (37, 'htmlHelloWolrd', 'print("Hello World")', '.html');
+insert into Files values (38, 'jsFuntion', 'print("hello world")', '.js');
+
+insert into Files values (39, 'exampleDockerCompose', 'implemntation in DockerCompose', '.dccp');
+insert into Files values (40, 'exampleUse',  'docker_compose_like_use()', '.dccp');
+
+insert into Files values (42, 'main',  'implementation in java', '.java');
+insert into Files values (43, 'rubyFuntion',  'implementation in ruby', '.rb');
+insert into Files values (44, 'pythonFunction',  'implementation in python', '.py');
+insert into Files values (45, 'goFunction',  'implementation in go', '.go');
+insert into Files values (46, 'readme',  'ReadME of project', '.md');
 
 -- select * from Files;
 
@@ -332,9 +432,62 @@ insert into Saves values (7, 4);
 insert into Saves values (8, 3);
 insert into Saves values (9, 4);
 insert into Saves values (10, 3);
+
+-- Repositório Info Animes
 insert into Saves values (11, null);
 insert into Saves values (12, 11);
 insert into Saves values (13, 11);
+
+-- Repo Fundamentos de Banco de Dados
+insert into Saves values (14, null);
+insert into Saves values (15, null);
+insert into Saves values (16, null);
+
+-- Repositório Project PET
+insert into Saves values (17, null);
+insert into Saves values (18, 17);
+insert into Saves values (19, 17);
+
+-- Repositório Project Golang
+insert into Saves values (20, null);
+insert into Saves values (21, null);
+insert into Saves values (22, null);
+
+-- Repositório Project Google
+insert into Saves values (23, null);
+insert into Saves values (24, 23);
+insert into Saves values (25, null);
+insert into Saves values (26, 23);
+
+-- Repositório Project Docker
+insert into Saves values (27, null);
+insert into Saves values (28, null);
+
+-- Repositório Modelagem Github
+insert into Saves values (29, null);
+insert into Saves values (30, 29);
+insert into Saves values (31, 29);
+insert into Saves values (32, 29);
+insert into Saves values (33, 29);
+
+-- Repositório Courses
+insert into Saves values (34, null);
+insert into Saves values (35, null);
+insert into Saves values (36, null);
+insert into Saves values (37, null);
+insert into Saves values (38, null);
+
+-- Repositório Docker Compose
+insert into Saves values (39, null);
+insert into Saves values (40, null);
+
+-- Repositório Trilha Estágio
+insert into Saves values (41, null);
+insert into Saves values (42, 41);
+insert into Saves values (43, 41);
+insert into Saves values (44, 41);
+insert into Saves values (45, 41);
+insert into Saves values (46, null);
 
 
 -- select * from Saves;
@@ -348,7 +501,7 @@ insert into Saves values (13, 11);
 insert into Languages values (1, 'Python');
 insert into Languages values (2, 'Java');
 insert into Languages values (3, 'C');
-insert into Languages values (4, 'C+');
+insert into Languages values (4, 'C++');
 insert into Languages values (5, 'JavaScript');
 insert into Languages values (6, 'Assembly');
 insert into Languages values (7, 'SQL');
@@ -358,6 +511,8 @@ insert into Languages values (10, 'COBOL');
 insert into Languages values (11, 'BASIC');
 insert into Languages values (12, 'R');
 insert into Languages values (13, 'Go');
+insert into Languages values (14, 'Shell Script');
+
 -- select * from Languages;
 
 -- codLang ja existe
@@ -366,26 +521,141 @@ insert into Languages values (13, 'Go');
 
 -- INSERINDO IMPLEMENTACOES
 -- insert into Implementations values (idFile, idLang);
--- insert into Implementations values (1, 1);
--- insert into Implementations values (2, null);
--- insert into Implementations values (3, 2);
+insert into Implementations values (5, 2);
+insert into Implementations values (6, 14);
 
+insert into Implementations values (7, 1);
+insert into Implementations values (8, 1);
+insert into Implementations values (9, 1);
+insert into Implementations values (10, null);
+insert into Implementations values (12, 1);
+insert into Implementations values (13, 1);
+
+insert into Implementations values (14, 7);
+insert into Implementations values (15, null);
+insert into Implementations values (16, 7);
+
+insert into Implementations values (18, 12);
+insert into Implementations values (19, null);
+
+insert into Implementations values (20, 13);
+insert into Implementations values (21, 13);
+insert into Implementations values (22, 13);
+
+insert into Implementations values (24, 13);
+insert into Implementations values (25, 7);
+insert into Implementations values (26, 3);
+
+insert into Implementations values (27, null);
+insert into Implementations values (28, 4);
+
+insert into Implementations values (30, null);
+insert into Implementations values (31, null);
+insert into Implementations values (32, null);
+insert into Implementations values (33, null);
+
+insert into Implementations values (34, 8);
+insert into Implementations values (35, 5);
+insert into Implementations values (36, 6);
+insert into Implementations values (37, 9);
+insert into Implementations values (38, 5);
+
+insert into Implementations values (39, null);
+insert into Implementations values (40, null);
+
+insert into Implementations values (42, 2);
+insert into Implementations values (43, 8);
+insert into Implementations values (44, 1);
+insert into Implementations values (45, 13);
+insert into Implementations values (46, null);
 -- select * from Implementations;
 
 -- idFile ja existe
--- insert into Implementations values (1, null);
+-- insert into Implementations values (5, null);
 
 
 -- INSERINDO COMMITS
 -- insert into Commits values (hashcode, idItem, idRepo, idContrib, dateCommit, message);
---  insert into Commits values (1, 1, 2, 3, '2019-02-12 01:12:32 UTC', 'Mensagem 1');
---  insert into Commits values (2, 1, 2, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 2');
---  insert into Commits values (3, 3, 2, 1, '2019-02-12 01:12:32 UTC', 'Mensagem 3');
---  insert into Commits values (4, 1, 3, 1, '2020-10-15 10:32:19 UTC', 'Mensagem 4');
+-- Repositório Java Studies
+insert into Commits values (1, 1, 3, 3, '2019-02-12 01:12:32 UTC', 'Mensagem 1');
+insert into Commits values (2, 2, 3, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 2');
+insert into Commits values (3, 5, 3, 3, '2019-12-12 01:12:32 UTC', 'Mensagem 3');
+insert into Commits values (4, 5, 3, 1, '2018-02-12 01:12:32 UTC', 'Mensagem 4');
+insert into Commits values (5, 6, 3, 3, '2019-05-09 01:12:32 UTC', 'Mensagem 5');
+ 
+-- Repositório Computer Science College
+insert into Commits values (1, 3, 1, 1, '2020-10-15 10:32:19 UTC', 'Mensagem 1');
+insert into Commits values (2, 4, 1, 1, '2010-11-20 10:32:19 UTC', 'Mensagem 2');
+insert into Commits values (3, 7, 1, 1, '2020-09-04 10:32:19 UTC', 'Mensagem 3');
+insert into Commits values (4, 8, 1, 1, '2020-02-09 10:32:19 UTC', 'Mensagem 4');
+insert into Commits values (5, 9, 1, 1, '2020-05-29 10:32:19 UTC', 'Mensagem 5');
+insert into Commits values (6, 10, 1, 1, '2020-10-15 10:32:19 UTC', 'Mensagem 6');
+insert into Commits values (7, 7, 1, 9, '2020-10-15 10:32:19 UTC', 'Alteração feita');
+
+-- Repositório Info Animes
+insert into Commits values (1, 11, 4, 1, '2020-10-15 10:32:19 UTC', 'Mensagem 1');
+insert into Commits values (2, 12, 4, 1, '2020-10-15 10:32:19 UTC', 'Mensagem 2');
+insert into Commits values (3, 13, 4, 1, '2020-10-15 10:32:19 UTC', 'Mensagem 3');
+insert into Commits values (4, 11, 4, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 4');
+
+-- Repo Fundamentos de Banco de Dados
+insert into Commits values (1, 14, 2, 2, '2020-10-15 10:32:19 UTC', 'Mensagem 1');
+insert into Commits values (2, 15, 2, 2, '2020-10-15 10:32:19 UTC', 'Mensagem 2');
+insert into Commits values (3, 16, 2, 2, '2020-10-15 10:32:19 UTC', 'Mensagem 3');
+insert into Commits values (4, 16, 2, 1, '2020-10-15 10:32:19 UTC', 'Alteração realizada. insert add');
+insert into Commits values (5, 15, 2, 3, '2020-10-15 10:32:19 UTC', 'Alteração realizada. select add');
+
+-- Repositório Project PET
+insert into Commits values (1, 17, 5, 9, '2020-10-15 10:32:19 UTC', 'Mensagem 1');
+insert into Commits values (2, 18, 5, 9, '2020-10-15 10:32:19 UTC', 'Mensagem 2');
+insert into Commits values (3, 19, 5, 9, '2020-10-15 10:32:19 UTC', 'Mensagem 3');
+insert into Commits values (4, 17, 5, 3, '2020-10-15 10:32:19 UTC', 'Alteração realizada. function add');
+insert into Commits values (5, 18, 5, 1, '2020-10-15 10:32:19 UTC', 'Alteração realizada. function add');
+
+-- Repositório Project Golang
+insert into Commits values (1, 20, 6, 1, '2020-10-15 10:32:19 UTC', 'Mensagem 1');
+insert into Commits values (2, 21, 6, 2, '2020-10-15 10:32:19 UTC', 'Mensagem 2');
+insert into Commits values (3, 22, 6, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 3');
+
+-- Repositório Project Google
+insert into Commits values (1, 23, 7, 6, '2020-10-15 10:32:19 UTC', 'Mensagem 1');
+insert into Commits values (2, 24, 7, 9, '2020-10-15 10:32:19 UTC', 'Mensagem 2');
+insert into Commits values (3, 25, 7, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 3');
+insert into Commits values (4, 26, 7, 1, '2020-10-15 10:32:19 UTC', 'Mensagem 4');
+
+-- Repositório Project Docker
+insert into Commits values (1, 27, 8, 2, '2020-10-15 10:32:19 UTC', 'Mensagem 1');
+insert into Commits values (2, 28, 8, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 2');
+
+-- Repositório Trilha Estágio
+insert into Commits values (1, 41, 9, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 1');
+insert into Commits values (2, 42, 9, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 2');
+insert into Commits values (3, 43, 9, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 3');
+insert into Commits values (4, 44, 9, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 4');
+insert into Commits values (5, 45, 9, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 5');
+insert into Commits values (6, 46, 9, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 6');
+
+-- Repositório Modelagem Github
+insert into Commits values (1, 29, 10, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 1');
+insert into Commits values (2, 30, 10, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 2');
+insert into Commits values (3, 31, 10, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 3');
+insert into Commits values (4, 32, 10, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 4');
+insert into Commits values (5, 33, 10, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 5');
+
+-- Repositório Courses
+insert into Commits values (1, 34, 11, 1, '2020-10-15 10:32:19 UTC', 'Mensagem 1');
+insert into Commits values (2, 35, 11, 1, '2020-10-15 10:32:19 UTC', 'Mensagem 2');
+insert into Commits values (3, 36, 11, 1, '2020-10-15 10:32:19 UTC', 'Mensagem 3');
+insert into Commits values (4, 37, 11, 1, '2020-10-15 10:32:19 UTC', 'Mensagem 4');
+insert into Commits values (5, 38, 11, 1, '2020-10-15 10:32:19 UTC', 'Mensagem 5');
+
+-- Repositório Docker Compose
+insert into Commits values (1, 39, 12, 3, '2020-10-15 10:32:19 UTC', 'Mensagem 1');
+insert into Commits values (2, 40, 12, 2, '2020-10-15 10:32:19 UTC', 'Mensagem 2');
 
 -- select * from Commits;
 
--- hashCode ja existe
+-- hashCode ja existe dentro desse repositório
 -- insert into Commits values (1, 2, 2, 1, '2020-12-12 01:12:32 UTC', 'Mensagem 10');
 
 -- (idItem, idRepo, idContrib, date) ja existe
