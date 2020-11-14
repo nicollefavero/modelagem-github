@@ -92,28 +92,8 @@ create table Folders
  
  
 
-insert into Items values (1, 1);
-insert into Items values (2, 1);
-insert into Items values (3, 1);
-insert into Items values (4, 1);
-insert into Items values (5, 1);
-insert into Items values (6, 1);
-
-insert into Folders values (1, 1, 'botDiscord'); -- Item botDiscord
-insert into Folders values (2, 1, 'Python'); -- Item botDiscord
 
 
-insert into Files values (3, 1, 'print("Hello World!")', '.py', 'helloWorldPython');
-insert into Files values (4, 1, 'import discord.api as ds\nprint("ds.foo()")', '.py', 'main');
-insert into Files values (5, 1, 'import numpy as np\nprint(np.foo())', '.py', 'exampleNumpy');
-insert into Files values (6, 1, '1001110101011111001011', '.img', 'commands-bot');
-
-insert into Saves values (1, null, 1);
-insert into Saves values (2, null, 1);
-insert into Saves values (3, 2, 1);
-insert into Saves values (4, 1, 1);
-insert into Saves values (5, 2, 1);
-insert into Saves values (6, 2, 1);
 
 
 select *
@@ -127,17 +107,6 @@ from Files
 
 select *
 from Saves
-
-insert into Items values (1, 4);
-insert into Items values (2, 4);
-insert into Items values (3, 4);
-insert into Folders values (1, 4, 'src');
--- ERRO POR CAUSA DO ID DO FILE
-insert into Files values (2, 4, 'import numpy as np\nprint(np.foo())', '.py', 'exampleNumpy');
-insert into Files values (3, 4, 'print("Anime Info")', '.py', 'exampleNumpy');
-
-insert into Saves values (1, null, 4)
-insert into Saves values (2, 1, 4)
 
 
 
