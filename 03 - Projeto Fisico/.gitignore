@@ -1,4 +1,0 @@
-# Arquivos referente ao Virtual Environments
-*.venv
-# Byte-compiled
-*__pycache__
