@@ -1,6 +1,6 @@
 # Modelagem do GitHub
 
-Trabalho final da disciplina de Fundamentos de Banco de Dados 2020/1.
+Trabalho final da disciplina de Fundamentos de Banco de Dados 2020/1 feito por Nicolle Pimentel Favero e [Matheus Azambuja](https://github.com/matheusazambuja) 
 
 ### Objetivo
 Modelar o universo de discurso do GitHub e, a partir da modelagem, implementar o projeto lógico e físico.
